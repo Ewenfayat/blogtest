@@ -1,0 +1,14 @@
+
+<li [ngClass] = "{'list-group-item':true,
+                    'list-group-item-success': post.loveIts > 0,
+                    'list-group-item-danger': post.loveIts < 0}"
+    *ngFor="let post of posts;let i = index">
+
+    <h4 class= "pull-right">{{ post.created_at | date :'short'}}</h4>
+    <h2 [ngStyle] = "{color:getColor(i)}"> {{ post.name }}</h2>
+    <p>{{post.content}}</p>
+    <button class="btn btn-success" (click)="onLoveIts(i)">Love it! </button>
+    <button class="btn btn-danger" (click)="onDontLoveIts(i)">Don't love it</button>
+    <button [disabled]="true">{{post.loveIts}}</button>
+    <button class="btn btn-danger pull-right" (click)="onRemove(i)">Supprimer</button>
+</li>
